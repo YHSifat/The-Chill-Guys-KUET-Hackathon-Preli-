@@ -27,12 +27,12 @@ const upload = multer({ storage: storage });
 
 
 const geminiAPIKey = process.env.GEMINI_API_KEY;
-const model = process.env.GEMINI_MODEL;
+
 
 // Initialize Gemini
 const genAI = new GoogleGenerativeAI(geminiAPIKey);
-const textModel = genAI.getGenerativeModel({ model: model });
-const visionModel = genAI.getGenerativeModel({ model: model });
+const textModel = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+const visionModel = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
 // Helper function to convert image to base64
 function fileToGenerativePart(path, mimeType) {
@@ -95,6 +95,7 @@ app.post('/api/ingredients', (req, res) => {
                 res.status(500).json({ error: err.message });
                 return;
             }
+            console.log('Ingredient added with ID:', this.lastID);
             res.json({
                 message: 'Ingredient added successfully',
                 id: this.lastID
@@ -112,6 +113,7 @@ app.delete('/api/ingredients/:id', (req, res) => {
             res.status(500).json({ error: err.message });
             return;
         }
+        console.log('Ingredient deleted with ID:', id);
         res.json({ message: 'Ingredient deleted successfully', changes: this.changes });
     });
 });
@@ -130,6 +132,7 @@ app.put('/api/ingredients/:id', (req, res) => {
                 res.status(500).json({ error: err.message });
                 return;
             }
+            console.log('Ingredient updated with ID:', id);
             res.json({
                 message: 'Ingredient updated successfully',
                 changes: this.changes
@@ -138,12 +141,14 @@ app.put('/api/ingredients/:id', (req, res) => {
     );
 });
 
+//get all ingredients
 app.get('/api/ingredients', (req, res) => {
     db.all('SELECT * FROM ingredients', [], (err, rows) => {
         if (err) {
             res.status(500).json({ error: err.message });
             return;
         }
+        console.log('Ingredients retrieved:');
         res.json(rows);
     });
 });
@@ -160,6 +165,7 @@ app.post('/api/recipes', (req, res) => {
                 res.status(500).json({ error: err.message });
                 return;
             }
+            console.log('Recipe added with Image and ID:', this.lastID);
             res.json({
                 message: 'Recipe added successfully',
                 id: this.lastID
@@ -199,7 +205,7 @@ app.post('/api/recipes/upload', upload.single('image'), async (req, res) => {
                     console.error('Database error:', err);
                     return res.status(500).json({ error: err.message });
                 }
-
+                console.log('Recipe with image processed and stored with ID:', this.lastID);
                 res.json({
                     message: 'Recipe processed and stored successfully',
                     recipeId: this.lastID,
@@ -214,6 +220,7 @@ app.post('/api/recipes/upload', upload.single('image'), async (req, res) => {
     }
 });
 
+// Get all recipes
 app.get('/api/recipes', (req, res) => {
     db.all('SELECT * FROM recipes', [], (err, rows) => {
         if (err) {
@@ -233,6 +240,8 @@ app.get('/api/recipes', (req, res) => {
     });
 });
 
+
+// Get a specific recipe
 app.get('/api/recipes/:id', (req, res) => {
     db.get('SELECT * FROM recipes WHERE id = ?', [req.params.id], (err, row) => {
         if (err) {
@@ -248,7 +257,7 @@ app.get('/api/recipes/:id', (req, res) => {
         if (row.image_path && fs.existsSync(row.image_path)) {
             row.image_data = fs.readFileSync(row.image_path).toString('base64');
         }
-
+        console.log('Recipe retrieved with ID:', req.params.id);
         res.json(row);
     });
 });
