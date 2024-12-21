@@ -10,7 +10,7 @@ Welcome to **The Chill Guys** project repository! This guide will help you inter
 
 ### COLAB LINK
 
-⁦https://colab.research.google.com/drive/1FWISOq6cv8pMW655WFKtMPqtlQfEanCH?usp=sharing
+[Click the Colab Link](https://colab.research.google.com/drive/1FWISOq6cv8pMW655WFKtMPqtlQfEanCH?usp=sharing)
 
 # **CHALLENGE 2**
 
