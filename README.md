@@ -28,6 +28,8 @@ curl -X POST http://localhost:3000/api/ingredients \
   -H "Content-Type: application/json" \
   -d '{"name": "eggs", "quantity": 3, "unit": "pieces"}'
 ```
+## Database
+![Alt Text](ss/1.png)
 
 #### Delete an Ingredient (Optional)
 ```bash
@@ -54,12 +56,16 @@ curl -X POST http://localhost:3000/api/recipes \
 ```
 
 #### Upload a Recipe Image
+#### Alternatively, you can use the `test.html` file in the repository for image uploads.
 You can upload an image for your recipe using the following command:
 ```bash
 curl -X POST http://localhost:3000/api/recipes/upload \
   -F "image=@/path/to/your/recipe-image.jpg"
 ```
-Alternatively, you can use the `test.html` file in the repository for image uploads.
+
+
+## uploading image
+![Alt Text](ss/2.png)
 
 #### Retrieve a Recipe with Its Image
 ```bash
@@ -77,6 +83,8 @@ curl -X POST http://localhost:3000/api/chat \
   -d '{"query": "I want to make something sweet today"}'
 ```
 
+### Getting suggestions from the API 
+![Alt Text](ss/3.png)
 ---
 
 ## Additional Notes
