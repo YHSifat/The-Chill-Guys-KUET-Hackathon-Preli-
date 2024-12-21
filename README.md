@@ -4,11 +4,22 @@ Welcome to **The Chill Guys** project repository! This guide will help you inter
 
 ---
 
+# **CHALLENGE 1**
+
+## Banglish to Bangla Conversion with goggle's mt5 model
+
+### COLAB LINK
+
+⁦https://colab.research.google.com/drive/1FWISOq6cv8pMW655WFKtMPqtlQfEanCH?usp=sharing
+
+# **CHALLENGE 2**
+
 ## API Endpoints and Usage
 
 ### 1. **Ingredients Management**
 
 #### Add an Ingredient
+
 ```bash
 curl -X POST http://localhost:3000/api/ingredients \
   -H "Content-Type: application/json" \
@@ -16,6 +27,7 @@ curl -X POST http://localhost:3000/api/ingredients \
 ```
 
 #### Update an Ingredient
+
 ```bash
 curl -X PUT http://localhost:3000/api/ingredients/1 \
   -H "Content-Type: application/json" \
@@ -23,15 +35,19 @@ curl -X PUT http://localhost:3000/api/ingredients/1 \
 ```
 
 #### Add Another Ingredient (Example: Eggs)
+
 ```bash
 curl -X POST http://localhost:3000/api/ingredients \
   -H "Content-Type: application/json" \
   -d '{"name": "eggs", "quantity": 3, "unit": "pieces"}'
 ```
+
 ## Database
+
 ![Alt Text](ss/1.png)
 
 #### Delete an Ingredient (Optional)
+
 ```bash
 curl -X DELETE http://localhost:3000/api/ingredients/1 \
   -H "Content-Type: application/json" \
@@ -39,7 +55,9 @@ curl -X DELETE http://localhost:3000/api/ingredients/1 \
 ```
 
 #### Check the SQLite3 Database
+
 To view the database contents, run:
+
 ```bash
 node db_viewer.js
 ```
@@ -49,6 +67,7 @@ node db_viewer.js
 ### 2. **Recipe Management**
 
 #### Add a Recipe
+
 ```bash
 curl -X POST http://localhost:3000/api/recipes \
   -H "Content-Type: application/json" \
@@ -56,18 +75,22 @@ curl -X POST http://localhost:3000/api/recipes \
 ```
 
 #### Upload a Recipe Image
+
 #### Alternatively, you can use the `test.html` file in the repository for image uploads.
+
 You can upload an image for your recipe using the following command:
+
 ```bash
 curl -X POST http://localhost:3000/api/recipes/upload \
   -F "image=@/path/to/your/recipe-image.jpg"
 ```
 
-
 ## uploading image
+
 ![Alt Text](ss/2.png)
 
 #### Retrieve a Recipe with Its Image
+
 ```bash
 curl http://localhost:3000/api/recipes/1
 ```
@@ -77,17 +100,19 @@ curl http://localhost:3000/api/recipes/1
 ### 3. **Chat with the Recipe Bot**
 
 The recipe bot allows you to get suggestions and ideas for recipes. For example:
+
 ```bash
 curl -X POST http://localhost:3000/api/chat \
   -H "Content-Type: application/json" \
   -d '{"query": "I want to make something sweet today"}'
 ```
 
-### Getting suggestions from the API 
-![Alt Text](ss/3.png)
----
+### Getting suggestions from the API
+
+## ![Alt Text](ss/3.png)
 
 ## Additional Notes
+
 - Replace `http://localhost:3000` with the appropriate server address if hosted remotely.
 - Ensure that the server is running before making any API requests.
 - Use `test.html` for a graphical interface to test file uploads.
@@ -95,6 +120,7 @@ curl -X POST http://localhost:3000/api/chat \
 ---
 
 ## Dependencies
+
 - **Node.js** for server operations
 - **SQLite3** as the database
 - **curl** for testing API endpoints
@@ -102,9 +128,11 @@ curl -X POST http://localhost:3000/api/chat \
 ---
 
 ## License
+
 This project is licensed under the [MIT License](LICENSE).
 
 ---
 
 ## Contributors
+
 Special thanks to **The Chill Guys** team for developing this project!
